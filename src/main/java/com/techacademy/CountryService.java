@@ -47,5 +47,5 @@ public class CountryService {
     public void deleteCountry(String code) {
         repository.deleteById(code);
     }
-    // ----- 追加:ここまで -----
+
 }

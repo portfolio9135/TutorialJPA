@@ -72,15 +72,18 @@ public class CountryController {
 
 
     // ----- 削除画面 -----
-    //削除画面用のコントローラーは、単に削除画面に遷移させているだけです。
+    //削除画面用のコントローラーは、削除画面に遷移する時に、削除する国のコードをモデルに渡すようにする
     //画面のformで入力したcodeをパラメータとして受け取り、
     //サービスの deleteCountry() メソッドで削除処理を行ないます。更新処理が終わったら一覧画面にリダイレクトします。
 
-    @GetMapping("/delete")
-    public String deleteCountryForm(Model model) {
+    @GetMapping("/delete/{code}")
+    public String deleteCountryForm(@PathVariable String code, Model model) {
+        // モデルにcodeを追加
+        model.addAttribute("code", code);
         // country/delete.htmlに画面遷移
         return "country/delete";
     }
+
 
     // ----- 削除 -----
     @PostMapping("/delete")
